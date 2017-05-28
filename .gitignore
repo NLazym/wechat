@@ -32,7 +32,7 @@ gradle-app.setting
 
 */build/*
 
-
+/.idea/*
 
 # Package Files #
 
