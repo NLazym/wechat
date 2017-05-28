@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zzy.WeChat.dao.UserDAO">
+	<sql id="all">
+		user_id AS userId,
+		username,
+		password,
+		sex,
+		role,
+		phone,
+		email,
+		introduction,
+		create_time AS createTime,
+		update_time AS updateTime
+	</sql>
+	<select id="selectOneUserByUserId" parameterType="java.lang.Integer" resultType="com.zzy.WeChat.model.User">
+		SELECT
+		<include refid="all"/>
+		FROM t_user WHERE user_id = #{userId} LIMIT 1
+	</select>
+	<insert id="insertOneUser" parameterType="com.zzy.WeChat.model.User">
+		INSERT INTO t_user (user_id, username, password) VALUES (#{userId}, #{username}, #{password})
+	</insert>
+	<update id="updateOneUserByUserId" parameterType="com.zzy.WeChat.model.User">
+		UPDATE t_user
+		<trim prefix="set" suffixOverrides=",">
+			<if test="username!=null">username=#{username},</if>
+			<if test="sex!=null">sex=#{sex},</if>
+			<if test="phone!=null">phone=#{phone},</if>
+			<if test="email!=null">email=#{email},</if>
+			<if test="introduction!=null">introduction=#{introduction},</if>
+		</trim>
+		WHERE user_id = #{param6}
+	</update>
+	<!-- 对于上面的update中的user_id，传进的参数中中没有对应的user_id（只有userID），因此要用param6来代替-->
+	
+	<select id="selectAllUser" resultType="com.zzy.WeChat.model.User">
+		SELECT user_id AS userId, username, sex, role, introduction
+		FROM t_user WHERE 1=1
+	</select>
+	
+	<delete id="deleteOneUserByUserId" parameterType="java.lang.Integer">
+		DELETE FROM t_user WHERE user_id = #{userId}
+	</delete>
+	
+	<update id="updateUserMessage">
+		UPDATE t_user
+		<trim prefix="set" suffixOverrides=",">
+			<if test="username!=null">username=#{username},</if>
+			<if test="sex!=null">sex=#{sex},</if>
+			<if test="role!=null">role=#{role},</if>
+			<if test="introduction!=null">introduction=#{introduction},</if>
+		</trim>
+		WHERE user_id = #{userId}
+	</update>
+
+</mapper>

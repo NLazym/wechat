@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zzy.WeChat.dao.MessageDAO">
+	<sql id="all">
+		message_id AS messageId,
+		send_id AS sendId,
+		content,
+		create_time AS createTime
+	</sql>
+	<insert id="insertMessage" parameterType="com.zzy.WeChat.model.Message" useGeneratedKeys="true" keyProperty="messageId">
+		INSERT INTO t_message (send_id, content) VALUES (#{sendId}, #{content})
+	</insert>
+	<insert id="insertMessageConnection" parameterType="java.lang.Integer">
+		INSERT INTO t_message_user (message_id, receive_id)
+		VALUES (#{param1}, #{param2})
+		<!--传入参数不是实体类对象时，用param1，param2，param3-->
+	</insert>
+	
+	<select id="selectUserBeginWith" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		SELECT user_id FROM t_user WHERE user_id LIKE CONCAT(#{userId}, '%')
+	</select>
+	
+	<!--<select id="selectUnknownMessagesId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		SELECT message_id AS messageId FROM t_message_user
+		WHERE receive_id = #{receiveId} AND known = 0
+	</select>
+	<select id="selectUnknownMessages" parameterType="java.lang.Integer" resultType="com.zzy.WeChat.model.Message">
+		SELECT <include refid="all"/>
+		FROM t_message WHERE known = 0 AND message_id IN
+		<foreach collection="list" item="messageId" index="index" open="(" separator="," close=")">
+			#{messageId}
+		</foreach>
+	</select>-->
+	
+	<select id="selectUnknownMessages" parameterType="java.lang.Integer" resultType="com.zzy.WeChat.model.Message">
+		SELECT m.message_id AS messageId, m.send_id AS sendId, m.content, m.create_time AS createTime
+		FROM t_message m, t_message_user u WHERE u.receive_id = #{receiveId} AND u.known = 0 AND m.message_id = u.message_id
+	</select>
+	
+	<!--<select id="selectAllMessages" parameterType="java.lang.Integer" resultType="com.zzy.WeChat.model.Message">
+		SELECT
+		<include refid="all"/>
+		FROM t_message_user WHERE receive_id = #{receiveId}
+	</select>-->
+	
+	<update id="updateUnknownMessages" parameterType="java.lang.Integer">
+		UPDATE t_message_user SET known = 1
+		WHERE receive_id = #{receiveId} AND known = 0
+	</update>
+	
+	<select id="selectAllMessages" parameterType="java.lang.Integer" resultType="com.zzy.WeChat.model.Message">
+		SELECT m.message_id AS messageId, m.send_id AS sendId, m.content, m.create_time AS createTime
+		FROM t_message m, t_message_user u WHERE u.receive_id = #{receiveId} AND m.message_id = u.message_id
+	</select>
+</mapper>
