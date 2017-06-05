@@ -48,8 +48,26 @@
 		WHERE receive_id = #{receiveId} AND known = 0
 	</update>
 	
-	<select id="selectAllMessages" parameterType="java.lang.Integer" resultType="com.zzy.WeChat.model.Message">
+	<select id="selectOneUserAllMessages" parameterType="java.lang.Integer" resultType="com.zzy.WeChat.model.Message">
 		SELECT m.message_id AS messageId, m.send_id AS sendId, m.content, m.create_time AS createTime
 		FROM t_message m, t_message_user u WHERE u.receive_id = #{receiveId} AND m.message_id = u.message_id
 	</select>
+	
+	<update id="updateOneMessageContent">
+		UPDATE t_message SET content = #{content} WHERE message_id = #{messageId}
+	</update>
+	
+	<delete id="deleteOneMessage">
+		DELETE FROM t_message WHERE message_id = #{messageId}
+	</delete>
+	
+	<delete id="deleteMessageConnection">
+		DELETE FROM t_message_user WHERE message_id = #{messageId}
+	</delete>
+	
+	<select id="selectAllMessage" resultType="com.zzy.WeChat.model.Message">
+		SELECT message_id AS messageId, send_id AS sendId, content, create_time AS createTime
+		FROM t_message WHERE 1=1
+	</select>
+	
 </mapper>

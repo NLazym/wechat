@@ -49,8 +49,11 @@ public class UserService {
 		return userDAO.updateUserMessage(userId, username, sex, role, introduction) > 0;
 	}
 	
-	public boolean modifyUserRole(int userId, int role) {
+	public boolean modifyUserRole(@Param("userId") int userId,
+								  @Param("role") int role) {
 		return userDAO.updateUserRole(userId, role) > 0;
 	}
+	
+	
 	
 }

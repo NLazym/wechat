@@ -1,7 +1,9 @@
 package com.zzy.WeChat.controller;
 
+import com.zzy.WeChat.model.Feedback;
 import com.zzy.WeChat.model.Message;
 import com.zzy.WeChat.model.User;
+import com.zzy.WeChat.service.FeedbackService;
 import com.zzy.WeChat.service.MessageService;
 import com.zzy.WeChat.service.UserService;
 import org.apache.commons.lang.StringUtils;
@@ -24,6 +26,8 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private MessageService messageService;
+	@Autowired
+	private FeedbackService feedbackService;
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(@RequestParam("userId") Integer userId,
@@ -170,6 +174,13 @@ public class UserController {
 		return result ? "success" : "fail";
 	}
 	
+	@RequestMapping(value = "roleManagement", method = RequestMethod.GET)
+	public String roleManagement(HttpSession session) {
+		List<User> allUser = userService.getAllUser();
+		session.setAttribute("allUser", allUser);
+		return "roleManagement";
+	}
+	
 	@RequestMapping(value = "editOneUserRole", method = RequestMethod.POST)
 	@ResponseBody
 	public String editOneUserRole(@RequestParam("userId") int userId,
@@ -178,12 +189,6 @@ public class UserController {
 		return result ? "success" : "fail";
 	}
 	
-	@RequestMapping(value = "editOneMessage", method = RequestMethod.POST)
-	@ResponseBody
-	public String editOneMessage() {
-		
-		
-		return "";
-	}
+	
 	
 }

@@ -14,10 +14,13 @@
 </head>
 <body>
 	<c:import url="head.jsp"/>
-	<c:forEach var="message" items="${sessionScope.allMessages}">
-		<p>${message["sendId"]}</p>
-		<p>${message["content"]}</p>
-		<p>${message["createTime"]}</p>
-	</c:forEach>
+	<div style="float: right; width: 78%;">
+		<c:forEach var="message" items="${sessionScope.allMessages}">
+			<p>${message["sendId"]}</p>
+			<p>${message["content"]}</p>
+			<p>${message["createTime"]}</p>
+		</c:forEach>
+	</div>
+	
 </body>
 </html>

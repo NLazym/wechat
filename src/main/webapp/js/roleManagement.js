@@ -18,6 +18,7 @@ $(function () {
 		else {
 			table.$('tr.selected').removeClass('selected');
 			$(this).addClass('selected');
+			$("#edit-area").css('display', 'none');
 		}
 	} );
 	//给按钮绑定点击事件
@@ -58,9 +59,6 @@ $(function () {
 	});
 	
 	$("#cancel").click(function () {
-		$("#userId").val("");
-		$("#username").val("");
-		$("#role").val("");
 		$("#edit-area").css('display', 'none');
 		
 	});

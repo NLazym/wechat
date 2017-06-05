@@ -15,18 +15,20 @@
 </head>
 <body>
 	<c:import url="head.jsp"/>
-	<h1>Message</h1>
-	<div id="message">
-		<form action="sendMessage" method="post">
-			<label for="userId">发送给：</label>
-			<input type="text" name="userId" id="userId">
-			<br>
-			<label for="text">消息内容：</label>
-			<textarea name="content" id="text"></textarea>
-			<%--某些ID名(id=content)已定义，不能再用--%>
-			<br>
-			<input type="submit" value="发送" id="submit">
-		</form>
+	<div style="float: right; width: 78%;">
+		<div id="message">
+			<form action="sendMessage" method="post">
+				<label for="userId">发送给：</label>
+				<input type="text" name="userId" id="userId">
+				<br>
+				<label for="text">消息内容：</label>
+				<textarea name="content" id="text"></textarea>
+				<%--某些ID名(id=content)已定义，不能再用--%>
+				<br>
+				<input type="submit" value="发送" id="submit">
+			</form>
+		</div>
 	</div>
+	
 </body>
 </html>

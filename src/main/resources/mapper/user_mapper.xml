@@ -53,5 +53,14 @@
 		</trim>
 		WHERE user_id = #{userId}
 	</update>
+	
+	<update id="updateUserRole">
+		UPDATE t_user
+		<trim prefix="set" suffixOverrides=",">
+			<if test="role!=null">role=#{role},</if>
+		</trim>
+		WHERE user_id = #{userId}
+	</update>
+
 
 </mapper>

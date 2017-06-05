@@ -1,6 +1,7 @@
 package com.zzy.WeChat.dao;
 
 import com.zzy.WeChat.model.Message;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,5 +24,14 @@ public interface MessageDAO {
 	
 	List<Message> selectUnknownMessages(int receiveId);
 	
-	List<Message> selectAllMessages(int receiveId);
+	List<Message> selectOneUserAllMessages(int receiveId);
+	
+	int updateOneMessageContent(@Param("messageId") int messageId,
+								@Param("content") String content);
+	
+	int deleteOneMessage(int messageId);
+	
+	int deleteMessageConnection(int messageId);
+	
+	List<Message> selectAllMessage();
 }

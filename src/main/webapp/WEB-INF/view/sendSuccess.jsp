@@ -15,15 +15,18 @@
 </head>
 <body>
 	<c:import url="head.jsp"/>
-	<div id="success">
-		<p id="time">
-			发送成功，
-			<span id="num">3</span>
-			秒后返回主页
-		</p>
-		<a href="home" id="home">
-			<input type="button" value="点击返回主页" id="a">
-		</a>
+	<div style="float: right; width: 78%;">
+		<div id="success">
+			<p id="time">
+				发送成功，
+				<span id="num">3</span>
+				秒后返回主页
+			</p>
+			<a href="home" id="home">
+				<input type="button" value="点击返回主页" id="a">
+			</a>
+		</div>
 	</div>
+	
 </body>
 </html>

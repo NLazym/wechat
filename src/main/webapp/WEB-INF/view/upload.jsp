@@ -27,13 +27,17 @@
 </head>
 <body>
 	<c:import url="head.jsp"/>
-	<h1>上传文件</h1>
-	<form action="upload" method="post" enctype="multipart/form-data" id="upload">
-		<div id="group">
-			<input type="file" name="file">
-		</div>
-		<input type="button" value="添加" id="append" onclick="add()">
-		<input type="submit" value="上传">
-	</form>
+	<div style="float: right; width: 78%;">
+		<h1>上传文件</h1>
+		<form action="upload" method="post" enctype="multipart/form-data" id="upload">
+			<label for="receiveId">发送至：</label>
+			<input type="text" name="receiveId" id="receiveId">
+			<div id="group">
+				<input type="file" name="file">
+			</div>
+			<input type="button" value="添加" id="append" onclick="add()">
+			<input type="submit" value="上传">
+		</form>
+	</div>
 </body>
 </html>

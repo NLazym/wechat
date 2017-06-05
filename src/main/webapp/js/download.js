@@ -7,13 +7,13 @@ $(function () {
 			url: 'fileCheck',
 			type: 'get',
 			data: {
-				fileName: $('#fileName').val().trim()
+				documentName: $('#documentName').val()
 			},
 			success: function (data) {
-				if (data == 'n') {
+				if (data === 'n') {
 					alert("该文件不存在！");
 				}
-				if (data == 'y') {
+				if (data === 'y') {
 					$('#submit').attr('disabled', false);
 				}
 			}

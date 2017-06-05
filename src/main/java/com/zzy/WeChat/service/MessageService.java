@@ -2,6 +2,7 @@ package com.zzy.WeChat.service;
 
 import com.zzy.WeChat.dao.MessageDAO;
 import com.zzy.WeChat.model.Message;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +25,7 @@ public class MessageService {
 	public boolean createMessageConnection(int messageId, int receiveId) {
 		return messageDAO.insertMessageConnection(messageId, receiveId) > 0;
 	}
-	
+
 //	public List<Integer> findUnknownMessagesId(int receiveId) {
 //		return messageDAO.selectUnknownMessagesId(receiveId);
 //	}
@@ -41,9 +42,25 @@ public class MessageService {
 		return messageDAO.selectUnknownMessages(receiveId);
 	}
 	
-	public List<Message> findAllMessages(int receiveId) {
-		return messageDAO.selectAllMessages(receiveId);
+	public List<Message> findOneUserAllMessages(int receiveId) {
+		return messageDAO.selectOneUserAllMessages(receiveId);
 	}
 	
+	public boolean editOneMessageContent(@Param("messageId") int messageId,
+										 @Param("content") String content) {
+		return messageDAO.updateOneMessageContent(messageId, content) > 0;
+	}
+	
+	public boolean removeOneMessage(int messageId) {
+		return messageDAO.deleteOneMessage(messageId) > 0;
+	}
+	
+	public boolean removeMessageConnection(int messageId) {
+		return messageDAO.deleteMessageConnection(messageId) > 0;
+	}
+	
+	public List<Message> findAllMessage() {
+		return messageDAO.selectAllMessage();
+	}
 	
 }

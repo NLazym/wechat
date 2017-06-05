@@ -14,16 +14,14 @@
 </head>
 <body>
 	<c:import url="head.jsp"/>
-	<h1>Welcome!</h1>
+	<div style="float: right; width: 78%;">
+		<h1>Welcome!</h1>
+	</div>
+	
 	<%--<object type="application/x-shockwave-flash" style="outline:none;" data="http://cdn.abowman.com/widgets/hamster/hamster.swf?" width="288" height="225">
 		<param name="movie" value="http://cdn.abowman.com/widgets/hamster/hamster.swf?">
 		<param name="AllowScriptAccess" value="always">
 		<param name="wmode" value="opaque">
 	</object>--%>
-	<a href="upload">上传文件</a>
-	<a href="download">下载文件</a>
-	<a href="unknownMessages" class="">未读信息</a>
-	<a href="allMessages">所有信息</a>
-	<a href="sendMessage">发送信息</a>
 </body>
 </html>

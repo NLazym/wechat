@@ -16,23 +16,25 @@ public interface UserDAO {
 	
 	int insertOneUser(User user);
 	
-	int updateOneUserByUserId(@Param("username")String username,
+	int updateOneUserByUserId(@Param("username") String username,
 							  @Param("sex") int sex,
-							  @Param("phone")String phone,
-							  @Param("email")String email,
-							  @Param("introduction")String introduction,
-							  int userId);	//mapper中没有对应的userID，因此要用param6来代替
+							  @Param("phone") String phone,
+							  @Param("email") String email,
+							  @Param("introduction") String introduction,
+							  int userId);    //mapper中没有对应的userID，因此要用param6来代替
 	
 	List<User> selectAllUser();
 	
 	int deleteOneUserByUserId(int userId);
 	
-	int updateUserMessage(@Param("userId")int userId,
-						  @Param("username")String username,
-						  @Param("sex")int sex,
-						  @Param("role")int role,
-						  @Param("introduction")String introduction);
+	int updateUserMessage(@Param("userId") int userId,
+						  @Param("username") String username,
+						  @Param("sex") int sex,
+						  @Param("role") int role,
+						  @Param("introduction") String introduction);
 	
-	int updateUserRole(int userId, int role);
+	int updateUserRole(@Param("userId") int userId,
+					   @Param("role") int role);
+	
 	
 }

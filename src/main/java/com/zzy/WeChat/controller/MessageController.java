@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -97,9 +99,32 @@ public class MessageController {
 	@RequestMapping(value = "allMessages", method = RequestMethod.GET)
 	public String allMessageGet(HttpSession session) {
 		User user = (User)session.getAttribute("user");
-		List<Message> messages = messageService.findAllMessages(user.getUserId());
+		List<Message> messages = messageService.findOneUserAllMessages(user.getUserId());
 		session.setAttribute("allMessages", messages);
 		return "allMessages";
+	}
+	
+	@RequestMapping(value = "messageManagement", method = RequestMethod.GET)
+	public String messageManagement(HttpSession session) {
+		List<Message> allMessage = messageService.findAllMessage();
+		session.setAttribute("allMessage", allMessage);
+		return "messageManagement";
+	}
+	
+	@RequestMapping(value = "editOneMessage", method = RequestMethod.POST)
+	@ResponseBody
+	public String editOneMessage(@RequestParam("messageId") int messageId,
+								 @RequestParam("content") String content) {
+		boolean result = messageService.editOneMessageContent(messageId, content);
+		return result ? "success" : "fail";
+	}
+	
+	@RequestMapping(value = "deleteOneMessage", method = RequestMethod.POST)
+	@ResponseBody
+	public String deleteOneMessage(@RequestParam("messageId") int messageId) {
+		boolean result = messageService.removeOneMessage(messageId);
+		boolean result2 = messageService.removeMessageConnection(messageId);
+		return (result && result2) ? "success" : "fail";
 	}
 	
 }

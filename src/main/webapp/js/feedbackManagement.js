@@ -1,8 +1,9 @@
 /**
- * Created by zzy on 2017/5/26.
+ * Created by zzy on 2017/6/3.
  */
+
 $(function () {
-	var table = $('#message-table').DataTable({
+	var table = $('#feedback-table').DataTable({
 		//这样配置后，即可用DT的API来访问表格数据
 		columns: [
 			{data: "column1"},
@@ -12,7 +13,7 @@ $(function () {
 		]
 	});
 	//给行绑定选中事件
-	$('#message-table tbody').on( 'click', 'tr', function () {
+	$('#feedback-table tbody').on( 'click', 'tr', function () {
 		if ($(this).hasClass('selected')) {
 			$(this).removeClass('selected');
 		}
@@ -28,7 +29,7 @@ $(function () {
 		var column2 = table.row('.selected').data().column2;
 		var column3 = table.row('.selected').data().column3;
 		var column4 = table.row('.selected').data().column4;
-		alert("选中的信息：\n" + "信息ID：" + column1 + "\n" + "发送者：" + column2 + "\n"
+		alert("选中的反馈信息：\n" + "反馈ID：" + column1 + "\n" + "发送者：" + column2 + "\n"
 			+ "内容：" + column3 + "\n" + "发送时间：" + column4);
 	});
 	
@@ -37,19 +38,20 @@ $(function () {
 		var column2 = table.row('.selected').data().column2;
 		var column3 = table.row('.selected').data().column3;
 		var column4 = table.row('.selected').data().column4;
-		if (confirm("确定删除该信息？" + "\n" + "信息ID：" + column1 + "\n" + "发送者：" + column2 + "\n"
+		if (confirm("确定删除该信息？" + "\n" + "反馈ID：" + column1 + "\n" + "发送者：" + column2 + "\n"
 				+ "内容：" + column3 + "\n" + "发送时间：" + column4)) {
 			$.ajax({
-				url: 'deleteOneMessage',
+				url: 'deleteOneFeedback',
 				type: 'post',
 				data: {
-					messageId: column1
+					feedbackId: column1
 				},
 				success: function (data) {
 					if (data === "success") {
+						alert("删除成功！");
 						location.reload();
 					} else {
-						alert("删除失败");
+						alert("删除失败！");
 					}
 				}
 			})
@@ -63,7 +65,7 @@ $(function () {
 		var column4 = table.row('.selected').data().column4;
 		
 		$("#edit-area").css('display', 'block');
-		$("#messageId").val(column1);
+		$("#feedbackId").val(column1);
 		$("#sendId").val(column2);
 		$("#content").val(column3);
 		$("#createTime").val(column4);
@@ -71,10 +73,10 @@ $(function () {
 	
 	$("#save").click(function () {
 		$.ajax({
-			url: 'editOneMessage',
+			url: 'editOneFeedback',
 			type: 'post',
 			data: {
-				messageId: $("#messageId").val(),
+				feedbackId: $("#feedbackId").val(),
 				content: $('#content').val()
 			},
 			success: function (data) {

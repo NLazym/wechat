@@ -15,7 +15,7 @@
 </head>
 <body>
 	<c:import url="head.jsp"/>
-	<div id="fail">
+	<div id="fail" style="float: right; width: 78%;">
 		<c:choose>
 			<c:when test="${sessionScope.fail == '信息创建失败！'}">
 				${sessionScope.fail == '信息创建失败！'}
