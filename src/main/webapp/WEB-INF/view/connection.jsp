@@ -17,17 +17,29 @@
 <body>
 	<c:import url="head.jsp"/>
 	<div style="float: right; width: 78%;">
+		<h3>联系我们</h3>
 		<div>
 			<p>邮箱：1115035458@qq.com</p>
 			<p>电话：1115035458</p>
 		</div>
-		<div style="position:relative;">
-			<form id="feedback">
-				<label for="content">反馈建议：</label>
-				<textarea name="content" id="content" style="position: relative; "></textarea>
+		<div class="indigo-text" style="width: 50%;">
+			<form id="contactForm" novalidate="novalidate">
+				<div class="input-field">
+					<textarea id="content" name="content" rows="3" required data-schema-key="content" maxlength="300" class="materialize-textarea"></textarea>
+					<label for="content" class="">
+						反馈建议
+					</label>
+				</div>
+				<div class="row">
+					<div class="col s12">
+						<button class="waves-effect waves-light blue accent-2 btn">
+							Send
+							<i class="mdi-content-send right"></i>
+						</button>
+					</div>
+				</div>
 			</form>
-			<br>
-			<input type="button" id="send" value="提交">
+		
 		</div>
 	</div>
 </body>

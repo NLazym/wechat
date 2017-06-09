@@ -18,13 +18,19 @@
 <body>
 	<c:import url="head.jsp"/>
 	<div style="float: right; width: 78%;">
-		<form action="download" method="post">
-			<label for="documentName">文件名：</label>
-			<input type="text" name="documentName" id="documentName">
-			<br>
-			<input type="button" value="检测文件是否存在" id="test">
-			<br>
-			<input type="submit" value="下载" id="submit" disabled>
+		<h3>下载</h3>
+		<form action="" method="post" id="download-form" style="width: 50%;">
+			<div class="input-field">
+				<input id="documentName" type="text" name="documentName" required maxlength="100">
+				<label for="documentName" class="">
+					文件名<span></span>
+				</label>
+			</div>
+			<div class="row">
+				<div>
+					<button id="submit" class="waves-effect waves-light blue accent-2 btn" disabled>下载</button>
+				</div>
+			</div>
 		</form>
 	</div>
 </body>

@@ -25,7 +25,7 @@
 					向<span id="userId">${fn:substring(sessionScope.fail, 0, sessionScope.fail.length() - 1)}</span>发送信息失败，请检查学号是否存在或出错！
 				</p>
 				<a href="sendMessage">
-					<input type="button" value="继续发送信息" id="continue">
+					<input class="waves-effect waves-light blue accent-2 btn" type="button" value="继续发送信息" id="continue">
 				</a>
 			</c:otherwise>
 		</c:choose>

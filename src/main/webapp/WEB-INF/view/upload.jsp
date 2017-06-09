@@ -16,22 +16,31 @@
 		var i = 1;
 		
 		function add() {
-			document.getElementById("group").innerHTML += ('<div id="div_' + i + '"><input type="file" name="file_' + i + '"><input type="button" value="删除" onclick="del(' + i + ')"></div>');
-			i = i + 1;
+			if (i < 5) {
+				document.getElementById("group").innerHTML += ('<div id="div_' + i + '"><input type="file" name="file_' + i + '"><input type="button" value="删除" onclick="del(' + i + ')"></div>');
+				i = i + 1;
+			} else {
+				alert("最多允许5个文件同时上传！")
+			}
 		}
 		
 		function del(n) {
 			document.getElementById("group").removeChild(document.getElementById('div_' + n));
+			i = i - 1;
 		}
 	</script>
 </head>
 <body>
 	<c:import url="head.jsp"/>
 	<div style="float: right; width: 78%;">
-		<h1>上传文件</h1>
-		<form action="upload" method="post" enctype="multipart/form-data" id="upload">
-			<label for="receiveId">发送至：</label>
-			<input type="text" name="receiveId" id="receiveId">
+		<h3>上传文件</h3>
+		<form action="upload" method="post" enctype="multipart/form-data" id="upload" style="width: 50%;">
+			<div class="input-field">
+				<input id="receiveId" type="text" name="receiveId" required maxlength="10">
+				<label for="receiveId" class="">
+					发送至
+				</label>
+			</div>
 			<div id="group">
 				<input type="file" name="file">
 			</div>

@@ -118,8 +118,8 @@ public class FileController {
 							HttpSession session) {
 		String path = "G:/Util/Project/WeChat/src/main/webapp/file";
 		File file = new File(path + File.separator + documentName);
-		int sendId = documentService.findSendIdByDocumentName(documentName);
-		if ((file.exists()) && (sendId == ((User)session.getAttribute("user")).getUserId())) {
+		Document document = documentService.findOneDocumentByDocumentName(documentName);
+		if ((file.exists()) && (document != null) && (document.getSendId() == ((User)session.getAttribute("user")).getUserId())) {
 			return "y";
 		}
 		return "n";

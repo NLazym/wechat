@@ -72,6 +72,21 @@ public class MessageController {
 		return "sendMessage";
 	}
 	
+	@RequestMapping(value = "unknownMessageCheck", method = RequestMethod.POST)
+	@ResponseBody
+	public String unknownMessageCheck(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			return "0";
+		}
+		List<Message> messages = messageService.findUnknownMessages(user.getUserId());
+		if (messages.isEmpty()) {
+			return "0";
+		} else {
+			return String.valueOf(messages.size());
+		}
+	}
+	
 	@RequestMapping(value = "unknownMessages", method = RequestMethod.GET)
 	public String receiveMessages(HttpSession session) {
 		

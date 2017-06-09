@@ -8,8 +8,8 @@ h1 {
 
 #register {
 	width: 400px;
-	height: 150px;
-	margin: 300px auto;
+	height: auto;
+	margin: 100px auto;
 }
 
 input {

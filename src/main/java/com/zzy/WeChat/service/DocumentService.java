@@ -20,8 +20,8 @@ public class DocumentService {
 		documentDAO.insertOneDocument(document);
 	}
 	
-	public int findSendIdByDocumentName(String documentName) {
-		return documentDAO.selectSendIdByDocumentName(documentName);
+	public Document findOneDocumentByDocumentName(String documentName) {
+		return documentDAO.selectOneDocumentByDocumentName(documentName);
 	}
 	
 	public List<Document> findAllDocument() {

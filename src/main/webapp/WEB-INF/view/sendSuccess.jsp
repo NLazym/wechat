@@ -22,8 +22,8 @@
 				<span id="num">3</span>
 				秒后返回主页
 			</p>
-			<a href="home" id="home">
-				<input type="button" value="点击返回主页" id="a">
+			<a href="sendMessage">
+				<input class="waves-effect waves-light blue accent-2 btn" type="button" value="点击继续发送信息">
 			</a>
 		</div>
 	</div>

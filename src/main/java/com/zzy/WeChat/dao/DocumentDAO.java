@@ -13,7 +13,7 @@ public interface DocumentDAO {
 	
 	void insertOneDocument(Document document);
 	
-	int selectSendIdByDocumentName(String documentName);
+	Document selectOneDocumentByDocumentName(String documentName);
 	
 	List<Document> selectAllDocument();
 	

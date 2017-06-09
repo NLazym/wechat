@@ -23,7 +23,7 @@ public class MyFilter extends OncePerRequestFilter {
 		}*/
 		
 		String[] notFilter = new String[]{"login", "register", "home",
-				"img", "css", "js", "file"};		//不过滤的uri
+				"img", "css", "js", "file", "unknownMessageCheck"};		//不过滤的uri
 		
 		String uri = request.getRequestURI();	//过滤的uri
 		if (uri.endsWith("/")) {		//如果uri以"/"结尾（欢迎页面http://localhost:8080/或者其他的）重定向到home页面

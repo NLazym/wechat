@@ -22,12 +22,11 @@ import java.util.List;
  */
 @Controller
 public class UserController {
+	
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private MessageService messageService;
-	@Autowired
-	private FeedbackService feedbackService;
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(@RequestParam("userId") Integer userId,
@@ -39,11 +38,6 @@ public class UserController {
 			
 			if (user.getRole() == 3) {
 				return "admin";
-			}
-			
-			List<Message> messages = messageService.findUnknownMessages(userId);
-			if (!messages.isEmpty()) {
-				session.setAttribute("tip", messages.size());
 			}
 			
 			if (session.getAttribute("originalUri") != null) {

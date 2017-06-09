@@ -11,11 +11,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>文章管理</title>
-	
+
 </head>
 <body>
 	<c:import url="admin.jsp"/>
 	<div style="float: right; width: 78%;">
+		<h3>文章管理</h3>
 		<div>
 			<table id="document-table" class="display" cellspacing="0" width="100%">
 				<thead>
@@ -49,13 +50,9 @@
 				</tbody>
 			</table>
 		</div>
-		<div style="display: none;">
-			<form action="download" method="post" id="download-form">
-				<input type="text" name="documentName" id="documentName">
-			</form>
-		</div>
-		<button id="download" type="button">下载</button>
-		<button id="delete" type="button">删除</button>
+		
+		<button class="waves-effect waves-light blue accent-2 btn" id="download" type="button">下载</button>
+		<button class="waves-effect waves-light blue accent-2 btn" id="delete" type="button">删除</button>
 	</div>
 	<link rel="stylesheet" href="../../DataTables-1.10.15/media/css/jquery.dataTables.css">
 	<script type="text/javascript" src="../../js/jquery-3.1.1.js"></script>

@@ -27,6 +27,9 @@
 			<input type="password" name="password2" id="password2" required="required" />
 			<label alt='请输入密码' placeholder='密码'></label>
 			<input type="submit" value="注册" id="submit"/>
+			<a href="login" title="点击登录">
+				<input type="button" value="已有账号？点击登录">
+			</a>
 		</form>
 	</div>
 </body>

@@ -17,6 +17,7 @@
 <body>
 	<c:import url="admin.jsp"/>
 	<div style="float: right; width: 78%;">
+		<h3>角色管理</h3>
 		<div>
 			<table id="role-table" class="display" cellspacing="0" width="100%">
 				<thead>
@@ -44,9 +45,9 @@
 				</tbody>
 			</table>
 		</div>
-		<button id="check" type="button">查看</button>
-		<button id="edit" type="button">编辑</button>
-		<div id="edit-area" style="display:none">
+		<button class="waves-effect waves-light blue accent-2 btn" id="check" type="button">查看</button>
+		<button class="waves-effect waves-light blue accent-2 btn" id="edit" type="button">编辑</button>
+		<div id="edit-area" style="display: none; width: 50%;">
 			<form id="edit-form">
 				<label for="userId">账号：</label>
 				<input type="text" name="userId" id="userId" disabled>
@@ -57,8 +58,8 @@
 				<label for="role">角色：</label>
 				<input type="text" name="role" id="role">
 			</form>
-			<input type="button" id="save" value="保存">
-			<input type="button" id="cancel" value="取消">
+			<button class="waves-effect waves-light blue accent-2 btn" id="save">保存</button>
+			<button class="waves-effect waves-light blue accent-2 btn" id="cancel">取消</button>
 		</div>
 	</div>
 	<link rel="stylesheet" href="../../DataTables-1.10.15/media/css/jquery.dataTables.css">

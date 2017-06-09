@@ -65,7 +65,11 @@ $(function () {
 		var column4 = table.row('.selected').data().column4;
 		
 		$("#edit-area").css('display', 'block');
-		$("#feedbackId").val(column1);
+		if (column1.length !== 0) {
+			$("#feedbackId").val(column1);
+			$("#feedbackId > label").addClass("active");
+		}
+		
 		$("#sendId").val(column2);
 		$("#content").val(column3);
 		$("#createTime").val(column4);

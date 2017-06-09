@@ -13,16 +13,24 @@
 	<title>未读信息</title>
 </head>
 <body>
+	<c:import url="head.jsp"/>
 	<div style="float: right; width: 78%;">
+		<h3>未读信息</h3>
 		<div>
-			<c:forEach var="message" items="${sessionScope.unknownMessages}">
-				<p>${message["sendId"]}</p>
-				<p>${message["content"]}</p>
-				<p>${message["createTime"]}</p>
-			</c:forEach>
-			<a id="back" href="home" title="点击返回主界面">
-				<input type="button" value="返回主界面">
-			</a>
+			<c:choose>
+				<c:when test="${empty(sessionScope.unknownMessages)}">
+					<p>没有未读信息</p>
+				</c:when>
+				<c:otherwise>
+					<c:forEach var="message" items="${sessionScope.unknownMessages}">
+						<div style="border: 1px skyblue solid; position: relative; margin-top: 10px; width: 50%; border-radius: 10px">
+							<p>发送者：${message["sendId"]}</p>
+							<p>信息内容：${message["content"]}</p>
+							<p>发送时间：${message["createTime"]}</p>
+						</div>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 	
