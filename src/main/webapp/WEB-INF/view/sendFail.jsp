@@ -18,17 +18,20 @@
 	<div id="fail" style="float: right; width: 78%;">
 		<c:choose>
 			<c:when test="${sessionScope.fail == '信息创建失败！'}">
-				${sessionScope.fail == '信息创建失败！'}
+				<p>信息创建失败！</p>
+			</c:when>
+			<c:when test="${sessionScope.fail == '向填写用户发送信息失败！'}">
+				<p>向填写用户发送信息失败！请检查学号是否存在或出错！</p>
 			</c:when>
 			<c:otherwise>
 				<p>
 					向<span id="userId">${fn:substring(sessionScope.fail, 0, sessionScope.fail.length() - 1)}</span>发送信息失败，请检查学号是否存在或出错！
 				</p>
-				<a href="sendMessage">
-					<input class="waves-effect waves-light blue accent-2 btn" type="button" value="继续发送信息" id="continue">
-				</a>
 			</c:otherwise>
 		</c:choose>
+		<a href="sendMessage">
+			<button class="waves-effect waves-light blue accent-2 btn">重新发送信息</button>
+		</a>
 	</div>
 </body>
 </html>

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by zzy on 2017/4/22.
@@ -33,7 +34,7 @@ public class MessageController {
 		int sendId = userSend.getUserId();
 		
 		//记录不存在的receiveId和信息发送失败的receiveId
-		String fail = "";
+		StringBuffer fail = new StringBuffer();
 		
 		//创建message
 		Message message = new Message();
@@ -41,7 +42,8 @@ public class MessageController {
 		message.setContent(content);
 		boolean result = messageService.createMessage(message);
 		if (!result) {
-			fail = "信息创建失败！";
+			fail.append("信息创建失败！");
+			return "sendFail";
 		}
 		int messageId = message.getMessageId();
 		
@@ -53,14 +55,18 @@ public class MessageController {
 			//根据输入进行模糊查询（a%）查找所有以a开头的用户向其发送信息，若发送失败则记录，然后继续执行下一个循环
 			int receiveId = Integer.parseInt(a);
 			List<Integer> list = messageService.findUserBeginWith(receiveId);
+			if (list.size() == 0) {
+				fail.append("向填写用户发送信息失败！");
+				continue;
+			}
 			for (Integer s : list) {
 				boolean result2 = messageService.createMessageConnection(messageId, s);
 				if (!result2) {
-					fail =fail + receiveId + ",";
+					fail.append(receiveId).append("，");
 				}
 			}
 		}
-		if (fail.equals("")) {
+		if (fail.toString().equals("")) {
 			return "sendSuccess";
 		}
 		session.setAttribute("fail",fail);

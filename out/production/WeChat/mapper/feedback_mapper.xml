@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zzy.WeChat.dao.FeedbackDAO">
+	<insert id="insertOneFeedback" parameterType="com.zzy.WeChat.model.Feedback">
+		INSERT INTO t_feedback (send_id, content, creat_time) VALUES (#{sendId}, #{content}, #{createTime})
+	</insert>
+	
+	<update id="updateOneFeedback">
+		UPDATE t_feedback SET content = #{content} WHERE feedback_id = #{feedbackId}
+	</update>
+	
+	<delete id="deleteOneFeedback">
+		DELETE FROM t_feedback WHERE feedback_id = #{feedbackId}
+	</delete>
+	
+	<select id="selectAllFeedback" resultType="com.zzy.WeChat.model.Feedback">
+		SELECT feedback_id AS feedbackId, send_id AS sendId, content, creat_time AS createTime
+		FROM t_feedback WHERE 1=1
+	</select>
+
+</mapper>

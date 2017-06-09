@@ -11,7 +11,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>所有信息</title>
-	<link rel="stylesheet" href="../../css/message.css">
 </head>
 <body>
 	<c:import url="head.jsp"/>
