@@ -4,6 +4,7 @@ import com.zzy.WeChat.model.Document;
 import com.zzy.WeChat.model.User;
 import com.zzy.WeChat.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +29,9 @@ public class FileController {
 	
 	@Autowired
 	private DocumentService documentService;
+	
+	/*@Value("${fileUploadPath}")
+	private String fileUploadPath;*/
 	
 	
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
